@@ -1,50 +1,57 @@
+{% extends 'dashboard.html' %}
+{% block title %}
+Dashboard
+{% endblock %}
 
 
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ADMIN</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-  </head>
-  <body>
-    {% if not userid %}
-    <h1>ADMIN</h1>
-    {% endif %}
+{% block body %}
 
-        {% if userid %}
-        <a href="/csales/{{ userid }}/">
-        {% else %}
-        <a href="/sales/">
-        {% endif%}
+{% if userid %}
+        {% include 'navbar.html' %}
+{% endif %}
 
-        <div class="card" style="width: 18rem;">
-          <img src="..." class="card-img-top" alt="SALES">
-                <div class="card-body">
-                    <p class="card-text">{{ csa }}</p>
-                </div>
-        </div></a>
-        <br>
-        {% if userid %}
-        <a href="/csubscription/{{ userid }}/">
-        {% else %}
-        <a href="/subscription/">
-        {% endif%}
+<div class="container vh-100">
+  <table class="table">
+  <tbody>
+    <tr>
+      <th scope="row" class="card-group"></th>
+      <td>
+          <div class="card mb-3 border-danger" style="width: 25rem;">
+            <div class="card-body">
+            <h5 class="card-title">Sales</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Know Your Sales Stats</h6>
+            <p class="card-text"><b>Total:</b>{{ csa }}</p>
+            {% if userid %}
+            <a href="/csales/{{ userid }}/" class="card-link btn btn-primary">Check Status</a>
+            {% else %}
+            <a href="/sales/" class="card-link btn btn-warning">Check Status</a>
+            {% endif%}
+            </div>
+          </div> 
+      </td>
+      <td>
+            <div class="card mb-3 border-danger" style="width: 25rem;">
+            <div class="card-body">
+            <h5 class="card-title">Subscription</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Know Your Subsciption Stats</h6>
+            <p class="card-text"><b>Total:</b>{{ csub }}</p>
+            {% if userid %}
+            <a href="/csubscription/{{ userid }}/" class="card-link btn btn-primary">Check Status</a>
+            {% else %}
+            <a href="/subscription/" class="card-link btn btn-warning">Check Status</a>
+            {% endif%}
+            </div>
+            </div> 
+      </td>
+    </tr>
+  </tbody>
+</table>  
 
-        <div class="card" style="width: 18rem;">
-          <img src="..." class="card-img-top" alt="SUBSCRIPTIONS">
-                <div class="card-body">
-                    <p class="card-text">{{ csub }}</p>
-                </div>
-        </div></a>
-        <br>
-        {% if not userid %}
-            <a href="/logout/"><button>Logout</button></a>
-        {% endif %}
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
-  </body>
-</html>
+</div>
+
+
+{% endblock %}
+
+

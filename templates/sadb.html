@@ -1,21 +1,98 @@
-{% load static %}
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SADB</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-  </head>
-  <body>
-    <h1>Super Admin Dashboard</h1>
-    <br>
-    <a href="/customer/"><button>Your Customers</button></a><br><br>
-    <a href="/addsoftware/"><button>ADD Software</button></a><br><br>  
-    <a href="/adduser/"><button>ADD USER</button></a><br><br>
-    <a href="/addsubscription/"><button>ADD SUBSCIPTION</button></a><br><br>
-    <a href="/addsales/"><button>ADD SALES</button></a><br><br>       
-    <a href="/logout/"><button>Logout</button></a>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-  </body>
-</html>
+{% extends 'dashboard.html' %}
+{% block title %}
+Super Admin
+{% endblock %}
+
+
+{% block body %}
+
+
+<div class="container">
+
+
+<table class="table">
+  <tbody>
+    <tr>
+      <th scope="row" class="card-group"></th>
+      <td>
+          <div class="card mb-3 border-danger" style="width: 25rem;">
+            <div class="card-body">
+            <h5 class="card-title" align="center">Your Customer</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Know Your Customer</h6>
+            <p class="card-text"></p>
+            <a href="/customer/" class="card-link btn btn-primary">Customer List</a>
+            <a href="#" class="card-link btn btn-warning">Report</a>
+            </div>
+          </div> 
+      </td>
+      <td>
+            <div class="card mb-3 border-danger" style="width: 25rem;">
+            <div class="card-body">
+            <h5 class="card-title">Software</h5>
+            <h6 class="card-subtitle mb-2 text-muted">List of Software</h6>
+            <p class="card-text"></p>
+            <a href="/addsoftware/" class="card-link btn btn-primary">ADD Software</a>
+            <a href="#" class="card-link btn btn-warning">Manage Software</a>
+            </div>
+            </div> 
+      </td>
+      <td>
+            <div class="card mb-3 border-danger" style="width: 25rem;">
+            <div class="card-body">
+            <h5 class="card-title">User</h5>
+            <h6 class="card-subtitle mb-2 text-muted">List of Users</h6>
+            <p class="card-text"></p>
+            <a href="/adduser/" class="card-link btn btn-primary">Add User</a>
+            <a href="#" class="card-link btn btn-warning">Manage User</a>
+            </div>
+            </div> 
+      </td>
+    </tr>
+    <tr>
+      <th scope="row" class="card-group"></th>
+      <td>
+            <div class="card mb-3 border-danger" style="width: 25rem;">
+            <div class="card-body">
+            <h5 class="card-title">Subscription</h5>
+            <h6 class="card-subtitle mb-2 text-muted">List of Subscription</h6>
+            <p class="card-text"></p>
+            <a href="/addsubscription/" class="card-link btn btn-primary">Add Subscription</a>
+            <a href="#" class="card-link btn btn-warning">Manage Subscription</a>
+            </div>
+            </div> 
+      </td>
+      <td>
+            <div class="card mb-3 border-danger" style="width: 25rem;">
+            <div class="card-body">
+            <h5 class="card-title">Sales</h5>
+            <h6 class="card-subtitle mb-2 text-muted">List of Sales</h6>
+            <p class="card-text"></p>
+            <a href="/addsales/" class="card-link btn btn-primary">Add Sales</a>
+            <a href="#" class="card-link btn btn-warning">Manage Sales</a>
+            </div>
+            </div> 
+      </td>
+      <td>
+            <div class="card mb-3 border-danger" style="width: 25rem;">
+            <div class="card-body">
+            <h5 class="card-title">Reports</h5>
+            <h6 class="card-subtitle mb-2 text-muted">All the Reports</h6>
+            <p class="card-text"></p>
+            <!--<a href="#" class="card-link btn btn-primary">R</a>-->
+            <a href="#" class="card-link btn btn-warning">Report</a>
+            </div>
+            </div> 
+      </td>
+    </tr>
+  </tbody>
+</table>  
+
+</div>
+
+</main>
+</div>
+</div>
+
+
+{% endblock %}
+

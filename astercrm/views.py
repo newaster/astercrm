@@ -95,7 +95,7 @@ def csales_call(request,id):
 
 @login_required
 def csubscription_call(request,id):
-	results=Subscription.objects.filter(usage_id__usage_user__id=id).values('usage_id__usage_software__name','usage_id__usage_software__id').annotate(count=Count('usage_id__usage_software__name'))
+	results=Subscription.objects.filter(usage_id__usage_user__id=id).values('usage_id__usage_software__name','usage_id__usage_software__id','usage_id__usage_software__url').annotate(count=Count('usage_id__usage_software__name'))
 
 	return render(request,'subscription.html',{'soft':results,'userid':id})
 
@@ -104,7 +104,7 @@ def csublist_call(request,id,id2):
 
 	slist=Subscription.objects.filter(usage_id__usage_user__id=id2).filter(usage_id__usage_software__id=id)
 
-	return render(request,'sublist.html',{'slist':slist})
+	return render(request,'sublist.html',{'slist':slist,'userid':id2})
 
 
 @login_required
@@ -192,17 +192,18 @@ def addsubscription_call(request):
 
 
 		if check:
-			print("Usage phle se hai")
+			u=Usage.objects.get(usage_user=usage_user,usage_software=usage_software)
 		else:
 			u=Usage(usage_user=usage_user,usage_software=usage_software)
 			u.save()
 
-			if check2:
-				print("Subscription phle se hai")
-			else:
-				s=Subscription(plant_smno=plantsmno,start_date=sdate,end_date=ldate,usage_id=u,price=newprice)
-				s.save()
-				return redirect('/lsa/')
+		if check2:
+			print("Subscription phle se hai")
+		else:
+			s=Subscription(plant_smno=plantsmno,start_date=sdate,end_date=ldate,usage_id=u,price=newprice)
+			s.save()
+			return redirect('/lsa/')
+
 	return render(request,'addsubscription_call.html',{'usr':usr,'soft':soft})
 
 
@@ -229,16 +230,16 @@ def addsales_call(request):
 		newprice = int(price)-((int(price)*int(dis))/100)
 
 		if check:
-			print("Usage phle se hai")
+			u=Usage.objects.get(usage_user=usage_user,usage_software=usage_software)
 		else:
 			u=Usage(usage_user=usage_user,usage_software=usage_software)
 			u.save()
 
-			if check2:
-				print("Sales phle se hai")
-			else:
-				s=Sales(plant_smno=plantsmno,datetime=sdate,usage_id=u,price=newprice,sales_type=stype)
-				s.save()
-				return redirect('/lsa/')
+		if check2:
+			print("Sales phle se hai")
+		else:
+			s=Sales(plant_smno=plantsmno,datetime=sdate,usage_id=u,price=newprice,sales_type=stype)
+			s.save()
+			return redirect('/lsa/')
 
 	return render(request,'addsales_call.html',{'usr':usr,'soft':soft})

@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
 from . import views
 
 app_name = "astercrm"
@@ -36,7 +36,8 @@ urlpatterns = [
     path('addsoftware/',views.addsoftware_call),
     path('adduser/',views.adduser_call),
     path('addsubscription/',views.addsubscription_call),
-    path('addsales/',views.addsales_call)
+    path('addsales/',views.addsales_call),
+    path('api/',include('allapi.urls'), name='owner')
 
 
 ]
