@@ -19,20 +19,27 @@ Add User
 				  <div class="input-box">
     			        <span class="details">Name <strong style="color:red;">*</strong></span>
     			      
-    			      	<input type="text"   name="nm1" placeholder="Firstname" class="form-control">
+    			      	<input type="text"   name="nm1" placeholder="Firstname" class="form-control" value="{{musr.first_name}}">
     			      	<br>
-    			      	<input type="text"  name="nm2" placeholder="Lastname"class="form-control" >
+    			      	<input type="text"  name="nm2" placeholder="Lastname"class="form-control" value="{{musr.last_name}}">
     		       </div>
 
 
   				<div class="input-box">
     			      <span class="details">Email</span>
-    			      <input type="text" class="form-control"  name="email">
+    			      <input type="text" class="form-control"  name="email" value="{{musr.email}}">
   				</div>
 
   				<div class="input-box">
     			      <span class="details">Username</span>
-    			      <input type="text" class="form-control"  name="username">
+    			      {% if musr %}
+    			      
+    			      			<input type="text" class="form-control"  name="usrname" value="{{musr.username}}" disabled>
+    			      {% else %}
+    			     
+    			      			<input type="text" class="form-control"  name="usrname">
+    			      {% endif %}
+    			      
   				</div>
 
   				<div class="input-box">
@@ -43,37 +50,41 @@ Add User
 
   				<div class="input-box">
     			      <span class="details">Mobile no</span>
-    			      <input type="text" class="form-control"  name="mobileno">
+    			      <input type="text" class="form-control"  name="mobileno" value="{{ausr.mobileno}}">
   				</div>
 
   				<div class="input-box">
     			      <span class="details">Company name</span>
-    			      <input type="text" class="form-control"  name="cname">
+    			      <input type="text" class="form-control"  name="cname" value="{{ausr.company_name}}">
   				</div>
 
   				<div class="input-box">
     			      <span class="details">Job Title</span>
-    			      <input type="text" class="form-control"  name="jtitle">
+    			      <input type="text" class="form-control"  name="jtitle" value="{{ausr.job_title}}">
   				</div>
 
   				<div class="input-box">
     			      <span class="details">Industry</span>
-    			      <input type="text" class="form-control"  name="industry">
+    			      <input type="text" class="form-control"  name="industry" value="{{ausr.industry}}">
   				</div>  								
 
        			<div class="input-box">
     				<span class="details">Address</span>
-    				<input type="textarea" class="form-control"  name="add">
+    				<input type="textarea" class="form-control"  name="add" value="{{ausr.location}}">
   				</div>
 
   				<div class="input-box">
     			      <span class="details">Discount</span>
-    			      <input type="text" class="form-control"  name="discount">
+    			      <input type="text" class="form-control"  name="discount" value="{{ausr.discount}}">
   				</div>
   				<hr>
 
    				<div class="input-box">
+   					{% if musr %}
+   					<input type="submit" name="Submit" value="Update" class="btn btn-danger">
+   					{% else %}
 					<input type="submit" name="Submit" class="btn btn-warning">
+   					{% endif %}
 				</div>
 
 				</div>

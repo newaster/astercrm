@@ -9,7 +9,12 @@ Super Admin
 
 <div class="container">
 
-
+{% if error %}
+      <script type="text/javascript" class="alert alert-danger">
+        alert("Invalid Number or Username");
+        window.location = "/lsa/";
+      </script>
+{% endif %}
 <table class="table">
   <tbody>
     <tr>
@@ -57,7 +62,14 @@ Super Admin
             <h6 class="card-subtitle mb-2 text-muted">List of Subscription</h6>
             <p class="card-text"></p>
             <a href="/addsubscription/" class="card-link btn btn-primary">Add Subscription</a>
-            <a href="#" class="card-link btn btn-warning">Manage Subscription</a>
+            <hr>
+                <span class="card-link">
+                  <form method="GET" action="/managesub/">
+        
+                    <input type="text" name="managesub" placeholder="Enter SMNO">
+                    <input type="submit" name="Submit" value="Manage" class="btn btn-warning">
+                    </form>
+                </span>
             </div>
             </div> 
       </td>
@@ -68,7 +80,14 @@ Super Admin
             <h6 class="card-subtitle mb-2 text-muted">List of Sales</h6>
             <p class="card-text"></p>
             <a href="/addsales/" class="card-link btn btn-primary">Add Sales</a>
-            <a href="#" class="card-link btn btn-warning">Manage Sales</a>
+            <hr>
+                <span class="card-link">
+                  <form method="GET" action="/managesale/">
+                    
+                    <input type="text" name="managesale" placeholder="Enter SMNO">
+                    <input type="submit" name="Submit" value="Manage" class="btn btn-warning">
+                    </form>
+                </span>
             </div>
             </div> 
       </td>
@@ -78,8 +97,15 @@ Super Admin
             <h5 class="card-title">Reports</h5>
             <h6 class="card-subtitle mb-2 text-muted">All the Reports</h6>
             <p class="card-text"></p>
-            <!--<a href="#" class="card-link btn btn-primary">R</a>-->
             <a href="#" class="card-link btn btn-warning">Report</a>
+            <hr>
+                <span class="card-link">
+                  <form method="GET" action="/creport/">
+                    
+                    <input type="text" name="usrname" placeholder="Customer Username">
+                    <input type="submit" name="Submit" value="Get Report" class="btn btn-danger">
+                    </form>
+                </span>
             </div>
             </div> 
       </td>

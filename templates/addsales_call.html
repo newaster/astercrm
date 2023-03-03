@@ -1,6 +1,13 @@
 {% extends 'dashboard.html' %}
+
+{% load static %}
+
 {% block title %}
-Sales
+{% if subs %}
+Manage Sales
+{% else %}
+Add Sales
+{% endif %}
 {% endblock %}
 
 
@@ -10,14 +17,58 @@ Sales
 {% include 'navbar.html' %}
 <div class="container">
 
-    <h1 align="center">ADD SALES</h1>
+    <h1 align="center">
+    {% if subs %}
+          MANAGE SALES
+        {% else %}
+          ADD SALES
+        {% endif %}
+    </h1>
     <hr>
     <div style="margin:5px;" class="container">
     <form method="POST">
     	{% csrf_token %}
     	
 				<div class="user-details container">
+          {% if subs %}
+                    <div class="card mb-3 container" style="max-width: 740px;">
+                      <div class="row no-gutters">
+                        <div class="col-md-4" style="margin-top:50px;">
+                          <img src="{% static subs.usage_id.usage_software.name %}.png" class="card-img-top" alt="...">
+                        </div>
+                      
+                    <div class="col-md-8">
+                    <div class="card-body">
+                    <h5 class="card-title">Plant Serial No:                     
+                      <input type="text" name="smno" class="form-control" value="{{ subs.plant_smno }}" disabled>
+                    </h5>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><b>Date:</b>{{ subs.datetime }}</li>
+            
+                            <li class="list-group-item">
+                              <b>Price:</b>
+                              <input type="text" name="price" value="{{ subs.price }}" class="form-control">                              
+                            </li>
+                            <li class="list-group-item">
+                              <b>Sales Type:</b>
+                              <select name="status" class="form-control">
+                            
+                             <option value="MRP" {% if subs.sales_type == MRP %}selected{% endif %}>MRP</option>
+                             <option value="DTP" {% if subs.sales_type == DTP %}selected{% endif %}>DTP</option>
+                            </select>
 
+                            
+                          </li>
+                            <li class="list-group-item"><b>Software Name:</b>{{ subs.usage_id.usage_software.name }}</li>
+                            <li class="list-group-item"><b>User Name:</b>{{ subs.usage_id.usage_user.first_name }}</li>
+                            <li class="list-group-item"><input type="submit" name="Submit" value="Update" class="btn btn-danger"></li>
+                    </ul>
+                    </div>
+                    </div>
+                  </div>
+          {% else %}
+          
 
   				<div class="input-box">
     			      <span class="details">Plant Serial no</span>
@@ -71,7 +122,7 @@ Sales
    				<div class="input-box">
 					<input type="submit" name="Submit" class="btn btn-warning">
 				</div>
-
+        {% endif %}
 				</div>
 			</form>
     </div>

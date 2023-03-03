@@ -1,26 +1,76 @@
 {% extends 'dashboard.html' %}
-{% block title %}
-Add Subscription
-{% endblock %}
 
+{% load static %}
+{% block title %}
+
+{% if subs %}
+Manage Subscription
+{% else %}
+Add Subscription
+{% endif %}
+
+{% endblock %}
 
 
 {% block body %}
 {% include 'navbar.html' %}
 <div class="container">
-    <h1 align="center">ADD SUBSCRIPTION</h1>
+    <h1 align="center">
+        {% if subs %}
+          MANAGE SUBSCRIPTION
+        {% else %}
+          ADD SUBSCRIPTION
+        {% endif %}
+    </h1>
     <hr>
     <div class="container">
-    <form method="POST">
+    <form method="POST" class="form">
     	{% csrf_token %}
     	
 				<div class="user-details container">
+          {% if subs %}
+                    <div class="card mb-3 container" style="max-width: 740px;">
+                      <div class="row no-gutters">
+                        <div class="col-md-4" style="margin-top:50px;">
+                          <img src="{% static subs.usage_id.usage_software.name %}.png" class="card-img-top" alt="...">
+                        </div>
+                      
+                    <div class="col-md-8">
+                    <div class="card-body">
+                    <h5 class="card-title">Plant Serial No:                     
+                      <input type="text" name="smno" class="form-control" value="{{ subs.plant_smno }}" disabled>
+                    </h5>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><b>Start Date:</b>{{ subs.start_date }}</li>
+                            <li class="list-group-item"><b>End Date:</b>{{ subs.end_date }}</li>
+                            <li class="list-group-item">
+                              <b>Price:</b>
+                              <input type="text" name="price" value="{{ subs.price }}" class="form-control">                              
+                            </li>
+                            <li class="list-group-item">
+                              <b>Status:</b>
+                              <select name="status" class="form-control">
+                            
+                             <option value="Active" {% if subs.status == Active %}selected{% endif %}>Active</option>
+                             <option value="Inactive" {% if subs.status == Inactive %}selected{% endif %}>Inactive</option>
+                            </select>
 
-
+                            
+                          </li>
+                            <li class="list-group-item"><b>Software Name:</b>{{ subs.usage_id.usage_software.name }}</li>
+                            <li class="list-group-item"><b>User Name:</b>{{ subs.usage_id.usage_user.first_name }}</li>
+                            <li class="list-group-item"><input type="submit" name="Submit" value="Update" class="btn btn-danger"></li>
+                    </ul>
+                    </div>
+                    </div>
+                  </div>
+          {% else %}
   				<div class="input-box">
     			      <span class="details">Plant Serial no</span>
     			      <input type="text" class="form-control"  name="plantsmno">
   				</div>
+
 
   				<div class="input-box">
     			      <span class="details">Start Date</span>
@@ -48,6 +98,7 @@ Add Subscription
                 </select>
   				</div>
           <br>
+          
 
   				<div class="input-box">
     			      <span class="details">Price</span>
@@ -58,8 +109,8 @@ Add Subscription
 
    				<div class="input-box">
 					<input type="submit" name="Submit" class="btn btn-warning">
-				</div>
-
+				  </div>
+          {% endif %}
 				</div>
 			</form>	
     </div>

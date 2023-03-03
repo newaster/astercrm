@@ -37,7 +37,9 @@ urlpatterns = [
     path('adduser/',views.adduser_call),
     path('addsubscription/',views.addsubscription_call),
     path('addsales/',views.addsales_call),
-    path('api/',include('allapi.urls'), name='owner')
-
-
+    path('api/',include('allapi.urls'), name='owner'),
+    path('manageuser/<id>/',views.manageuser_call),
+    path('managesub/',views.managesubscription),
+    path('managesale/',views.managesale),
+    path('creport/',views.creport)
 ]
