@@ -11,6 +11,7 @@ Sales List
 
 <div class="container" style="margin-top:20px;">
 
+{% if sa %}
 <h4 align="center">SALES</h4>
 
 
@@ -39,5 +40,11 @@ Sales List
   </tbody>
 </table>  
 
+
+{% else %}
+  
+    <h4 align="center">No Data Available!!</h4>
+
+{% endif %}
 </div>
 {% endblock %}

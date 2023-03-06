@@ -332,29 +332,33 @@ def managesale(request):
 		return render(request,'addsales_call.html',{'usr':usr,'soft':soft,'subs':m})
 
 	except:
-		return render(request,'sadb.html',{'error':"Invalid SMNO"})
+		return render(request,'sadb.html',{'error':True})
 
 
 def creport(request):
-	ms=request.GET['usrname']
+	try:
+		ms=request.GET['usrname']
 
-	a=User.objects.get(username=ms)
+		a=User.objects.get(username=ms)
 
-	name = a.first_name + ' ' + a.last_name
-	email = a.email
+		name = a.first_name + ' ' + a.last_name
+		email = a.email
 
-	mag="cedfefegererger"
-	mb="fefrerfe"
+		mag="cedfefegererger"
+		mb="fefrerfe"
 
-	response = HttpResponse(content_type='application/pdf')
-	response['Content-Disposition'] = 'attachment; filename="user_report.pdf"'
-	pdf_canvas = canvas.Canvas(response)
-	pdf_canvas.setTitle("Report")
-	pdf_canvas.drawString(50, 800, f'Name: {name}')
-	pdf_canvas.drawString(50, 780, f'Email: {email}')
-	pdf_canvas.drawString(50, 760, f'mag: {mag}')
-	pdf_canvas.drawString(50, 740, f'mb: {mb}')
-	pdf_canvas.save()
+		response = HttpResponse(content_type='application/pdf')
+		response['Content-Disposition'] = 'attachment; filename="user_report.pdf"'
+		pdf_canvas = canvas.Canvas(response)
+		pdf_canvas.setTitle("Report")
+		pdf_canvas.drawString(50, 800, f'Name: {name}')
+		pdf_canvas.drawString(50, 780, f'Email: {email}')
+		pdf_canvas.drawString(50, 760, f'mag: {mag}')
+		pdf_canvas.drawString(50, 740, f'mb: {mb}')
+		pdf_canvas.save()
 
-	return response
+		return response
+
+	except:
+		return render(request,'sadb.html',{'error':True})
 
